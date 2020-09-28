@@ -10,6 +10,7 @@ namespace FamilyArchive.Models
     {
         public int Id { get; set; }
         public string Content { get; set; }
+        [Required]
         public int FamilyId { get; set; }
         public Family Family { get; set; }
     }

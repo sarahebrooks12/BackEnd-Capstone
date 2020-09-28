@@ -16,8 +16,11 @@ namespace FamilyArchive.Models
         [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }
         public string ImagePath { get; set; }
+        [Required]
         public int MemberId { get; set; }
+        [Required]
         public int FamilyId { get; set; }
+        [Required]
         public int AlbumId { get; set; }
         public bool Pending { get; set; }
         public Family Family { get; set; }

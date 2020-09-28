@@ -11,9 +11,23 @@ namespace FamilyArchive.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool isNickName { get; set; }
+        public string NickName { get; set; }
+        public string Address { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+        public bool isDied { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime DeathDate { get; set; }
+        public bool isAnniversary { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime Anniversary { get; set; }
+        [Required]
         public int FamilyId { get; set; }
         public bool Pending { get; set; }
         public Family Family { get; set; }
