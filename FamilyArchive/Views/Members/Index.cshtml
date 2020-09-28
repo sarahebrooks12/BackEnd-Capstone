@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<FamilyArchive.Models.Members>
 
 @{
-    ViewData["Title"] = "Directory";
+    ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
@@ -12,54 +12,98 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
-                First Name
-            </th>
+            @foreach (var item in Model)
+            {
+                <th>
+                    First Name
+                </th>
             <th>
                 Last Name
             </th>
             <th>
-                Nickname
+                Do you have a nickname?
+            </th>
+            @if (item.isNickName == true)
+            {
+                <th>Nickname</th>
+            }
+            <th>
+                Address
             </th>
             <th>
-                Birth Date
+                Birthday
             </th>
             <th>
-                Death Date
-            </th>
-            <th>
-                Anniversary
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NickName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeathDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Anniversary)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                @if (item.isDied == true)
+                {
+                <th>Death Date</th>
+                }
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DeathDate)
+                </th>
+                <th>
+                    @if (item.isAnniversary == true)
+                    {
+                    <th>Anniversary</th>
+                    }
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Anniversary)
+                    </th>
+                    <th></th>
+            }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isMaidenName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isNickName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NickName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BirthDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isDied)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeathDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isAnniversary)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Anniversary)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pending)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Family.Id)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>

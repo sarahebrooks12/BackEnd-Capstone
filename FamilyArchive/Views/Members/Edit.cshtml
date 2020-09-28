@@ -24,9 +24,28 @@
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="isMaidenName" /> @Html.DisplayNameFor(model => model.isMaidenName)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="isNickName" /> @Html.DisplayNameFor(model => model.isNickName)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label asp-for="NickName" class="control-label"></label>
                 <input asp-for="NickName" class="form-control" />
                 <span asp-validation-for="NickName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BirthDate" class="control-label"></label>
@@ -34,9 +53,23 @@
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="isDied" /> @Html.DisplayNameFor(model => model.isDied)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label asp-for="DeathDate" class="control-label"></label>
                 <input asp-for="DeathDate" class="form-control" />
                 <span asp-validation-for="DeathDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="isAnniversary" /> @Html.DisplayNameFor(model => model.isAnniversary)
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="Anniversary" class="control-label"></label>
