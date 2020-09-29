@@ -26,5 +26,6 @@ namespace FamilyArchive.Models
         public Family Family { get; set; }
         public Members FamilyMember { get; set; }
         public Albums Album { get; set; }
+        public List<Stories> Stories { get; set; }
     }
 }

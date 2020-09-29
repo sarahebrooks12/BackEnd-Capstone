@@ -4,14 +4,16 @@ using FamilyArchive.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FamilyArchive.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200929152638_PleaseWork")]
+    partial class PleaseWork
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +103,7 @@ namespace FamilyArchive.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, Address = "123 Lioness Way", ConcurrencyStamp = "bb31f4a4-29d0-46be-b1ef-42e73b0769ed", Email = "rhonda@rhonda.com", EmailConfirmed = true, FamilyId = 1, FirstName = "Rhonda", IsAdmin = false, LastName = "Scragg", LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEKmE02DhcHZr0tVFa+wqf5m38NLyPmdTtw5koBDbd6kc5e6bGUhp/f4bcmsanBq2ZQ==", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "lioness" }
+                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, Address = "123 Lioness Way", ConcurrencyStamp = "6041f715-5bfb-4ca1-bb86-2756c5928b3b", Email = "rhonda@rhonda.com", EmailConfirmed = true, FamilyId = 1, FirstName = "Rhonda", IsAdmin = false, LastName = "Scragg", LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAEFSHRGtL2pfL09A1DQLxuLb8vgtuzITKRei/QMlHKqX02tO+ycTFrjVE8p1QleyEGA==", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "lioness" }
                     );
                 });
 
@@ -158,11 +160,11 @@ namespace FamilyArchive.Migrations
 
                     b.Property<string>("Address");
 
-                    b.Property<DateTime?>("Anniversary");
+                    b.Property<DateTime>("Anniversary");
 
                     b.Property<DateTime>("BirthDate");
 
-                    b.Property<DateTime?>("DeathDate");
+                    b.Property<DateTime>("DeathDate");
 
                     b.Property<int>("FamilyId");
 
@@ -239,8 +241,6 @@ namespace FamilyArchive.Migrations
 
                     b.Property<bool>("Pending");
 
-                    b.Property<int>("PhotoId");
-
                     b.Property<string>("Title");
 
                     b.HasKey("Id");
@@ -248,8 +248,6 @@ namespace FamilyArchive.Migrations
                     b.HasIndex("FamilyId");
 
                     b.HasIndex("FamilyMemberId");
-
-                    b.HasIndex("PhotoId");
 
                     b.ToTable("Story");
                 });
@@ -436,11 +434,6 @@ namespace FamilyArchive.Migrations
                     b.HasOne("FamilyArchive.Models.Members", "FamilyMember")
                         .WithMany()
                         .HasForeignKey("FamilyMemberId");
-
-                    b.HasOne("FamilyArchive.Models.Photos", "Photo")
-                        .WithMany("Stories")
-                        .HasForeignKey("PhotoId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FamilyArchive.Models.Updates", b =>
