@@ -59,7 +59,7 @@ namespace FamilyArchive.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,DateCreated,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
+        public async Task<IActionResult> Create([Bind("Id,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +95,7 @@ namespace FamilyArchive.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DateCreated,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
         {
             if (id != photos.Id)
             {

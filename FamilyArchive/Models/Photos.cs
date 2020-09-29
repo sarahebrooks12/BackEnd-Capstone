@@ -10,11 +10,11 @@ namespace FamilyArchive.Models
     public class Photos
     {
         public int Id { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Display(Name = "Date Created")]
-        public DateTime DateCreated { get; set; }
+        //[Required]
+        //[DataType(DataType.Date)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //[Display(Name = "Date Created")]
+        //public DateTime DateCreated { get; set; }
         public string ImagePath { get; set; }
         [Required]
         public int MemberId { get; set; }
