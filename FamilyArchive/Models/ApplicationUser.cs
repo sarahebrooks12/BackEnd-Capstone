@@ -10,20 +10,16 @@ namespace FamilyArchive.Models
     //applicationuser identity 
     public class ApplicationUser : IdentityUser
     {
-        public int Id { get; set; }
+        public ApplicationUser () { }
 
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
-
         [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
         public string Address { get; set; }
-        public DateTime BirthDate { get; set; }
-        public DateTime Anniversary { get; set; }
+        [Required]
         public int FamilyId { get; set; }
         public bool IsAdmin { get; set; }
     }

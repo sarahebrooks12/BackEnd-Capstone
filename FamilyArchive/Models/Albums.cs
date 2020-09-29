@@ -10,9 +10,10 @@ namespace FamilyArchive.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        [Required]
         public int FamilyId { get; set; }
         public bool Pending { get; set; }
         public Family Family { get; set; }
-       public List<Photos> Photos { get; set }
+       public List<Photos> Photos { get; set; }
     }
 }
