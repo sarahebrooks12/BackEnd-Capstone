@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FamilyArchive.Data;
 using FamilyArchive.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace FamilyArchive.Controllers
 {
     public class PhotosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public PhotosController(ApplicationDbContext context)
+        public PhotosController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Photos
@@ -59,10 +62,11 @@ namespace FamilyArchive.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
+        public async Task<IActionResult> Create([Bind("Id,ImageFile,Title, ImageName,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
         {
             if (ModelState.IsValid)
             {
+                string wwwRootPath = _hostEnvironment.WebRootPath;
                 _context.Add(photos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

@@ -10,7 +10,10 @@ namespace FamilyArchive.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) 
+        {
+        
+        }
         public DbSet<ApplicationUser> User { get; set; }
         public DbSet<Albums> Album { get; set; }
         public DbSet<Events> Event { get; set; }

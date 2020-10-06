@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -10,12 +12,16 @@ namespace FamilyArchive.Models
     public class Photos
     {
         public int Id { get; set; }
-        //[Required]
-        //[DataType(DataType.Date)]
-        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        //[Display(Name = "Date Created")]
-        //public DateTime DateCreated { get; set; }
+        public string Title { get; set; }
+
+        [DisplayName("Image Name")]
+        public string ImageName { get; set; }
         public string ImagePath { get; set; }
+
+        [NotMapped]
+        [DisplayName("Upload File")]
+        public IFormFile ImageFile { get; set; }
+
         [Required]
         public int MemberId { get; set; }
         [Required]
