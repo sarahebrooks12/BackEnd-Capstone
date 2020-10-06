@@ -22,7 +22,7 @@ namespace FamilyArchive.Controllers
         // GET: Stories
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Story.Include(s => s.Family);
+            var applicationDbContext = _context.Story.Include(s => s.Family).Include(s => s.Photo);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -36,6 +36,7 @@ namespace FamilyArchive.Controllers
 
             var stories = await _context.Story
                 .Include(s => s.Family)
+                .Include(s => s.Photo)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (stories == null)
             {
@@ -49,6 +50,7 @@ namespace FamilyArchive.Controllers
         public IActionResult Create()
         {
             ViewData["FamilyId"] = new SelectList(_context.Family, "Id", "Id");
+            ViewData["PhotoId"] = new SelectList(_context.Photo, "Id", "Id");
             return View();
         }
 
@@ -57,15 +59,17 @@ namespace FamilyArchive.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,MemberId,FamilyId,Pending")] Stories stories)
+        public async Task<IActionResult> Create([Bind("Id,Title,Content,MemberId,FamilyId,Pending,PhotoId")] Stories stories)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(stories);
+                    
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FamilyId"] = new SelectList(_context.Family, "Id", "Id", stories.FamilyId);
+            ViewData["PhotoId"] = new SelectList(_context.Photo, "Id", "Id", stories.PhotoId);
             return View(stories);
         }
 
@@ -83,6 +87,7 @@ namespace FamilyArchive.Controllers
                 return NotFound();
             }
             ViewData["FamilyId"] = new SelectList(_context.Family, "Id", "Id", stories.FamilyId);
+            ViewData["PhotoId"] = new SelectList(_context.Photo, "Id", "Id", stories.PhotoId);
             return View(stories);
         }
 
@@ -91,7 +96,7 @@ namespace FamilyArchive.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,MemberId,FamilyId,Pending")] Stories stories)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,MemberId,FamilyId,Pending,PhotoId")] Stories stories)
         {
             if (id != stories.Id)
             {
@@ -119,6 +124,7 @@ namespace FamilyArchive.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["FamilyId"] = new SelectList(_context.Family, "Id", "Id", stories.FamilyId);
+            ViewData["PhotoId"] = new SelectList(_context.Photo, "Id", "Id", stories.PhotoId);
             return View(stories);
         }
 
@@ -132,6 +138,7 @@ namespace FamilyArchive.Controllers
 
             var stories = await _context.Story
                 .Include(s => s.Family)
+                .Include(s => s.Photo)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (stories == null)
             {

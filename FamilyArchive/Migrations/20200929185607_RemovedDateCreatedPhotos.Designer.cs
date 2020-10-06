@@ -4,14 +4,16 @@ using FamilyArchive.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FamilyArchive.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200929185607_RemovedDateCreatedPhotos")]
+    partial class RemovedDateCreatedPhotos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,7 +103,7 @@ namespace FamilyArchive.Migrations
                     b.ToTable("AspNetUsers");
 
                     b.HasData(
-                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, Address = "123 Lioness Way", ConcurrencyStamp = "538d2fc9-f6ba-4302-8281-790247dff47b", Email = "rhonda@rhonda.com", EmailConfirmed = true, FamilyId = 1, FirstName = "Rhonda", IsAdmin = false, LastName = "Scragg", LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAELR3yPR8NPKHSD5aRaeksy0M+4q/uG6n4MIATrjRmxS8E+1HNpsC+sXPWOZ6bW621A==", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "lioness" }
+                        new { Id = "00000000-ffff-ffff-ffff-ffffffffffff", AccessFailedCount = 0, Address = "123 Lioness Way", ConcurrencyStamp = "e61c0ed3-01fc-4b53-82b9-92d39c624e86", Email = "rhonda@rhonda.com", EmailConfirmed = true, FamilyId = 1, FirstName = "Rhonda", IsAdmin = false, LastName = "Scragg", LockoutEnabled = false, PasswordHash = "AQAAAAEAACcQAAAAELDjzDG0lOyVNaSiIuUfL9gUfTNfDuYxefppNZk+LNfRgKYBYo9RICrROPHXatUl8g==", PhoneNumberConfirmed = false, TwoFactorEnabled = false, UserName = "lioness" }
                     );
                 });
 
@@ -203,15 +205,11 @@ namespace FamilyArchive.Migrations
 
                     b.Property<int?>("FamilyMemberId");
 
-                    b.Property<string>("ImageName");
-
                     b.Property<string>("ImagePath");
 
                     b.Property<int>("MemberId");
 
                     b.Property<bool>("Pending");
-
-                    b.Property<string>("Title");
 
                     b.HasKey("Id");
 
