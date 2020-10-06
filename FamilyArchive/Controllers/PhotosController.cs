@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using FamilyArchive.Data;
 using FamilyArchive.Models;
 using Microsoft.AspNetCore.Hosting;
+using System.IO;
+
 
 namespace FamilyArchive.Controllers
 {
@@ -15,11 +17,10 @@ namespace FamilyArchive.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
-
         public PhotosController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
-            this._hostEnvironment = hostEnvironment;
+            _hostEnvironment = hostEnvironment;
         }
 
         // GET: Photos
@@ -62,11 +63,10 @@ namespace FamilyArchive.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ImageFile,Title, ImageName,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
+        public async Task<IActionResult> Create([Bind("Id,Title,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
         {
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
                 _context.Add(photos);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -99,7 +99,7 @@ namespace FamilyArchive.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
         {
             if (id != photos.Id)
             {

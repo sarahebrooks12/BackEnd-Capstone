@@ -15,7 +15,6 @@ namespace FamilyArchive.Models
         public string Title { get; set; }
 
         [DisplayName("Image Name")]
-        public string ImageName { get; set; }
         public string ImagePath { get; set; }
 
         [NotMapped]
