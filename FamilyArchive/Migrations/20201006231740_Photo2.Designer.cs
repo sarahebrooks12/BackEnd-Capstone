@@ -4,14 +4,16 @@ using FamilyArchive.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FamilyArchive.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201006231740_Photo2")]
+    partial class Photo2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -129,7 +131,7 @@ namespace FamilyArchive.Migrations
                             Id = "00000000-ffff-ffff-ffff-ffffffffffff",
                             AccessFailedCount = 0,
                             Address = "123 Lioness Way",
-                            ConcurrencyStamp = "94cc22a9-98c3-4977-bee0-a866d4c45e9b",
+                            ConcurrencyStamp = "44cbb237-2ea4-4a0c-8f08-cede14c8beb2",
                             Email = "rhonda@rhonda.com",
                             EmailConfirmed = true,
                             FamilyId = 1,
@@ -137,9 +139,9 @@ namespace FamilyArchive.Migrations
                             IsAdmin = false,
                             LastName = "Scragg",
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEJtcD6ekoVV5fBpAxQcQ+/irBeaktfwrSCzy4XlajD00PHW0Q1qDurLp7FvfCmsCBQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECkzHsMFyR5pW2WCHQ+s+KbVB2F+iGfFoACodGVh/EKGhq5xIAz5dW8dfp992YLnMw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "772dc7a9-89f4-4ae4-83fc-baf28637a88f",
+                            SecurityStamp = "656e0c47-0ab8-447b-9a40-079c75dade1a",
                             TwoFactorEnabled = false,
                             UserName = "lioness"
                         });
@@ -280,6 +282,9 @@ namespace FamilyArchive.Migrations
                     b.Property<int>("FamilyId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("FamilyMemberId")
+                        .HasColumnType("int");
+
                     b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
@@ -298,7 +303,7 @@ namespace FamilyArchive.Migrations
 
                     b.HasIndex("FamilyId");
 
-                    b.HasIndex("MemberId");
+                    b.HasIndex("FamilyMemberId");
 
                     b.ToTable("Photo");
                 });
@@ -314,6 +319,9 @@ namespace FamilyArchive.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FamilyId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FamilyMemberId")
                         .HasColumnType("int");
 
                     b.Property<int>("MemberId")
@@ -332,7 +340,7 @@ namespace FamilyArchive.Migrations
 
                     b.HasIndex("FamilyId");
 
-                    b.HasIndex("MemberId");
+                    b.HasIndex("FamilyMemberId");
 
                     b.HasIndex("PhotoId");
 
@@ -535,11 +543,9 @@ namespace FamilyArchive.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FamilyArchive.Models.Members", "Member")
+                    b.HasOne("FamilyArchive.Models.Members", "FamilyMember")
                         .WithMany()
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FamilyMemberId");
                 });
 
             modelBuilder.Entity("FamilyArchive.Models.Stories", b =>
@@ -550,11 +556,9 @@ namespace FamilyArchive.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FamilyArchive.Models.Members", "Member")
+                    b.HasOne("FamilyArchive.Models.Members", "FamilyMember")
                         .WithMany()
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FamilyMemberId");
 
                     b.HasOne("FamilyArchive.Models.Photos", "Photo")
                         .WithMany("Stories")

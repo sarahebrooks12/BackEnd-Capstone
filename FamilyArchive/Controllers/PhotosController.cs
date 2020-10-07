@@ -20,7 +20,7 @@ namespace FamilyArchive.Controllers
         public PhotosController(ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
-            _hostEnvironment = hostEnvironment;
+            this._hostEnvironment = hostEnvironment;
         }
 
         // GET: Photos
@@ -63,8 +63,20 @@ namespace FamilyArchive.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ImagePath,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
+        public async Task<IActionResult> Create([Bind("Id,Title,DateTime,ImageFile,MemberId,FamilyId,AlbumId,Pending")] Photos photos)
         {
+
+
+            string wwwRootPath = _hostEnvironment.WebRootPath;
+            string fileName = Path.GetFileNameWithoutExtension(photos.ImageFile.FileName);
+            string extension = Path.GetExtension(photos.ImageFile.FileName);
+            photos.ImagePath = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+            string path = Path.Combine(wwwRootPath + "/images/", fileName);
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                await photos.ImageFile.CopyToAsync(fileStream);
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(photos);

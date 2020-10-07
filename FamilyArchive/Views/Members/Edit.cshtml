@@ -14,85 +14,85 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
+                <label asp-for="FirstName" class="control-label">First Name</label>
                 <input asp-for="FirstName" class="form-control" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
+                <label asp-for="LastName" class="control-label">Last Name</label>
                 <input asp-for="LastName" class="form-control" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="isMaidenName" /> @Html.DisplayNameFor(model => model.isMaidenName)
                     </label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
-                <label asp-for="MaidenName" class="control-label"></label>
+                <label asp-for="MaidenName" class="control-label">Maiden Name</label>
                 <input asp-for="MaidenName" class="form-control" />
                 <span asp-validation-for="MaidenName" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="isNickName" /> @Html.DisplayNameFor(model => model.isNickName)
                     </label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
-                <label asp-for="NickName" class="control-label"></label>
+                <label asp-for="NickName" class="control-label">Nickname</label>
                 <input asp-for="NickName" class="form-control" />
                 <span asp-validation-for="NickName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
+                <label asp-for="Address" class="control-label">Address</label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BirthDate" class="control-label"></label>
+                <label asp-for="BirthDate" class="control-label">Birth Date</label>
                 <input asp-for="BirthDate" class="form-control" />
                 <span asp-validation-for="BirthDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="isDied" /> @Html.DisplayNameFor(model => model.isDied)
                     </label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
-                <label asp-for="DeathDate" class="control-label"></label>
+                <label asp-for="DeathDate" class="control-label">Death Date</label>
                 <input asp-for="DeathDate" class="form-control" />
                 <span asp-validation-for="DeathDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="isAnniversary" /> @Html.DisplayNameFor(model => model.isAnniversary)
                     </label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
-                <label asp-for="Anniversary" class="control-label"></label>
+                <label asp-for="Anniversary" class="control-label">Anniversary</label>
                 <input asp-for="Anniversary" class="form-control" />
                 <span asp-validation-for="Anniversary" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FamilyId" class="control-label"></label>
+                <label asp-for="FamilyId" class="control-label">Family</label>
                 <select asp-for="FamilyId" class="form-control" asp-items="ViewBag.FamilyId"></select>
                 <span asp-validation-for="FamilyId" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="Pending" /> @Html.DisplayNameFor(model => model.Pending)
                     </label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>

@@ -18,7 +18,7 @@ namespace FamilyArchive.Models
         public bool Pending { get; set; }
         public int PhotoId { get; set; }
         public Family Family { get; set; }
-        public Members FamilyMember { get; set; }
+        public Members Member { get; set; }
         public Photos Photo { get; set; }
     }
 }
