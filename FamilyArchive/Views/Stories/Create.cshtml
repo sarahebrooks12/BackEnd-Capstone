@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2></h2>
 
 <h4>Stories</h4>
 <hr />
@@ -13,31 +13,31 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
+                <label asp-for="Title" class="control-label">Story Title</label>
                 <input asp-for="Title" class="form-control" />
                 <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
+                <label asp-for="Content" class="control-label">Story</label>
+                <textarea asp-for="Content" class="form-control"></textarea>
                 <span asp-validation-for="Content" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MemberId" class="control-label"></label>
+                <label asp-for="MemberId" class="control-label">Which Family Member is this about?</label>
                 <input asp-for="MemberId" class="form-control" />
                 <span asp-validation-for="MemberId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FamilyId" class="control-label"></label>
+                <label asp-for="FamilyId" class="control-label">Family</label>
                 <select asp-for="FamilyId" class ="form-control" asp-items="ViewBag.FamilyId"></select>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="Pending" /> @Html.DisplayNameFor(model => model.Pending)
                     </label>
                 </div>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="PhotoId" class="control-label"></label>
                 <select asp-for="PhotoId" class ="form-control" asp-items="ViewBag.PhotoId"></select>
