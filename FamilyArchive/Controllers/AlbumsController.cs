@@ -36,7 +36,9 @@ namespace FamilyArchive.Controllers
 
             var albums = await _context.Album
                 .Include(a => a.Family)
+                .Include(a => a.Photos)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (albums == null)
             {
                 return NotFound();

@@ -5,32 +5,31 @@
 }
 
 <h2>Details</h2>
-
+@*details --- asp-controller tell it to go to photos for creating new photo in album details*@
+<a asp-action="Create" asp-controller="Photos">Create New</a>
 <div>
     <h4>Albums</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Pending)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Pending)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Family)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Family.Id)
-        </dd>
+        <div class="container">
+            <div class="row">
+                <div class="card-deck d-flex flex-row justify-content-center align-items-center">
+                    @foreach (var item in Model.Photos)
+                    {
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="@("~/images/"+item.ImagePath)" asp-append-version="true" alt="Card image cap">
+                            <div class="card-body">
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    @*<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |*@
     <a asp-action="Index">Back to List</a>
 </div>
