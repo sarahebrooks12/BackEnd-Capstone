@@ -5,6 +5,10 @@
     <UserSecretsId>aspnet-FamilyArchive-3DA32894-973C-465E-8FB4-5583D7038A6A</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Controllers\EventsController.cs~RF66e0272d.TMP" />
+  </ItemGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.8" />
